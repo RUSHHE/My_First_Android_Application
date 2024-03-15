@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -19,12 +21,18 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class MainActivity2 extends AppCompatActivity {
+    String[] tabNames = {"小而美", "通讯录", "发现", "我"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         ActivityMain2Binding am2Binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(am2Binding.getRoot());
+
+        setSupportActionBar(am2Binding.materialToolbar); //设置toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        am2Binding.materialToolbar.setNavigationOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
 
         ViewCompat.setOnApplyWindowInsetsListener(am2Binding.getRoot(), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -35,7 +43,7 @@ public class MainActivity2 extends AppCompatActivity {
         FragmentStateAdapter adapter = new FragmentStateAdapter(this) {
             @Override
             public int getItemCount() {
-                return 3;
+                return 4;
             }
 
             @NonNull
@@ -48,6 +56,8 @@ public class MainActivity2 extends AppCompatActivity {
                         return new BlankFragment2();
                     case 2:
                         return new MomentFragment();
+                    case 3:
+                        return new BlankFragment2();
                     default:
                         throw new IllegalArgumentException("Invalid position: " + i);
                 }
@@ -59,45 +69,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         // 将TabLayout与ViewPager2关联起来
         new TabLayoutMediator(am2Binding.tabLayout1, am2Binding.viewPager21,
-                (tab, position) -> tab.setText("Test") // 设置Tab标题
+                (tab, position) -> tab.setText(tabNames[position]) // 设置Tab标题
         ).attach();
-//        // 初始化 FragmentManager
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        // 创建一个新的 FragmentTransaction
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        // 设置 TabLayout 的选项卡选择监听器
-//        am2Binding.tabLayout1.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                FragmentTransaction newTransaction = fragmentManager.beginTransaction();
-//                switch (tab.getPosition()) {
-//                    case 0:
-//                        newTransaction.replace(R.id.frameLayout1, blankFragment);
-//                        break;
-//                    case 1:
-//                        // 创建并添加 BlankFragment2
-//                        BlankFragment2 blankFragment2 = new BlankFragment2();
-//                        newTransaction.replace(R.id.frameLayout1, blankFragment2);
-//                        break;
-//                    case 2:
-//                        // 创建并添加 BlankFragment3
-//                        MomentFragment blankFragment3 = new MomentFragment();
-//                        newTransaction.replace(R.id.frameLayout1, blankFragment3);
-//                        break;
-//                }
-//                newTransaction.commit();
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//                // 如果需要处理未选中的选项卡事件，可以在这里添加代码
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//                // 如果需要处理重新选择选项卡事件，可以在这里添加代码
-//            }
-//        });
     }
 }

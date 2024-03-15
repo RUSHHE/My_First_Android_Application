@@ -17,7 +17,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class BlankFragment extends Fragment implements AdapterView.OnItemClickListener {
-    String[] name = {"Tom", "Jack", "Mike", "Tom", "Jack", "Mike", "Tom", "Jack", "Mike", "Tom", "Jack", "Mike"};
+    //帮我随机生成20个中文人名
+    String[] name = {"李狗蛋", "王二狗", "沈金冰", "张三", "李四", "王五", "赵四", "李荣", "李田所", "李狗蛋", "王二狗", "沈金冰", "张三", "李四", "王五", "赵四", "李荣", "李田所"};
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class BlankFragment extends Fragment implements AdapterView.OnItemClickLi
         super.onViewCreated(view, savedInstanceState);
 
         ListView listView = view.findViewById(R.id.VeChatList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, name);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, name);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
