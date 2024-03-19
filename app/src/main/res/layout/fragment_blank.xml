@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smart.refresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mini_programs"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ededed">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.scwang.smart.refresh.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/searchButton"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ededed">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="#ffffff"
-            android:text="搜索"
-            android:textColor="@color/gray"
-            app:cornerRadius="5dp"
-            app:layout_constraintBottom_toTopOf="@id/VeChatList"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
 
-        <com.example.myapplication.ScrollListView
-            android:id="@+id/VeChatList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchButton">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/searchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:backgroundTint="#ffffff"
+                android:text="搜索"
+                android:textColor="@color/gray"
+                app:cornerRadius="5dp"
+                app:layout_constraintBottom_toTopOf="@id/VeChatList"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </com.example.myapplication.ScrollListView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+            <com.example.myapplication.ScrollListView
+                android:id="@+id/VeChatList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchButton">
+
+            </com.example.myapplication.ScrollListView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>

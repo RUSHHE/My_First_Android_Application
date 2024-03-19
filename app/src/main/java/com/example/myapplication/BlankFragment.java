@@ -2,17 +2,20 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import com.example.myapplication.databinding.FragmentBlankBinding;
+import com.scwang.smart.refresh.footer.ClassicsFooter;
+import com.scwang.smart.refresh.header.ClassicsHeader;
+import com.scwang.smart.refresh.layout.SmartRefreshLayout;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.constant.SpinnerStyle;
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,8 @@ public class BlankFragment extends Fragment {
         }
         ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.chat_item_layout, chatList);
         binding.VeChatList.setAdapter(chatAdapter);
+
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, refreshLayout) -> new ClassicsHeader(context).setSpinnerStyle(SpinnerStyle.Translate));
     }
 
     /*
