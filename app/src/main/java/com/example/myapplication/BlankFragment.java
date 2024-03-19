@@ -11,35 +11,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
-public class BlankFragment extends Fragment implements AdapterView.OnItemClickListener {
-    //帮我随机生成20个中文人名
-    String[] name = {"李狗蛋", "王二狗", "沈金冰", "张三", "李四", "王五", "赵四", "李荣", "李田所", "李狗蛋", "王二狗", "沈金冰", "张三", "李四", "王五", "赵四", "李荣", "李田所"};
+import com.example.myapplication.databinding.FragmentBlankBinding;
+
+import java.util.ArrayList;
+
+public class BlankFragment extends Fragment {
+    String[] names = {"AAA售房经理小圣", "行稳致远", "花开富贵", "aaaaaaadaze～～～", "不是二次元", "SoulMaker"};
+    private FragmentBlankBinding binding;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
-        return view;
+        binding = FragmentBlankBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        ListView listView = view.findViewById(R.id.VeChatList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, name);
-
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        Toast.makeText(getActivity(), name[position], Toast.LENGTH_SHORT).show();
+        ArrayList<Chat> chatList = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            for (String name : names) {
+                chatList.add(new Chat(name, "你好", R.drawable.author));
+            }
+        }
+        ChatAdapter chatAdapter = new ChatAdapter(getActivity(), R.layout.chat_item_layout, chatList);
+        binding.VeChatList.setAdapter(chatAdapter);
     }
 
     /*
