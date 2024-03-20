@@ -1,0 +1,62 @@
+[
+  {
+    "GroupName": "长辈",
+    "ChildData": [
+      {
+        "ChildName": "花开富贵",
+        "ChildIcon": "author",
+        "ChildAbout": "花开富贵测试"
+      },
+      {
+        "ChildName": "行稳致远",
+        "ChildIcon": "author",
+        "ChildAbout": "行稳致远测试"
+      },
+      {
+        "ChildName": "花好月圆",
+        "ChildIcon": "author",
+        "ChildAbout": "花好月圆测试"
+      }
+    ]
+  },
+  {
+    "GroupName": "二次元",
+    "ChildData": [
+      {
+        "ChildName": "初音未来",
+        "ChildIcon": "author",
+        "ChildAbout": "我是洛天依"
+      },
+      {
+        "ChildName": "猫宫日向",
+        "ChildIcon": "hinata",
+        "ChildAbout": "我不会玩FPS"
+      }
+    ]
+  },
+  {
+    "GroupName": "Unknown",
+    "ChildData": [
+      {
+        "ChildName": "陈睿",
+        "ChildIcon": "chenrui",
+        "ChildAbout": "你所热爱的"
+      },
+      {
+        "ChildName": "陈睿1",
+        "ChildIcon": "chenrui",
+        "ChildAbout": "就是你的生活"
+      },
+      {
+        "ChildName": "陈睿2",
+        "ChildIcon": "chenrui",
+        "ChildAbout": "柠檬酸不酸啊"
+      },
+      {
+        "ChildName": "牢大",
+        "ChildIcon": "laoda",
+        "ChildAbout": "孩子们，我没事"
+      }
+    ]
+  }
+]

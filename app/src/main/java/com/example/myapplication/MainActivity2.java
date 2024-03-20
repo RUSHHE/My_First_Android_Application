@@ -40,29 +40,29 @@ public class MainActivity2 extends AppCompatActivity {
             return insets;
         });
 
-        FragmentStateAdapter adapter = new FragmentStateAdapter(this) {
-            @Override
-            public int getItemCount() {
-                return 4;
-            }
+    FragmentStateAdapter adapter =
+        new FragmentStateAdapter(this) {
+          @Override
+          public int getItemCount() {
+            return 4;
+          }
 
-            @NonNull
-            @Override
-            public Fragment createFragment(int i) {
-                switch (i) {
-                    case 0:
-                        return new BlankFragment();
-                    case 1:
-                        return new BlankFragment2();
-                    case 2:
-                        return new MomentFragment();
-                    case 3:
-                        return new BlankFragment2();
-                    default:
-                        throw new IllegalArgumentException("Invalid position: " + i);
-                }
-
+          @NonNull
+          @Override
+          public Fragment createFragment(int i) {
+            switch (i) {
+              case 0:
+                return new BlankFragment();
+              case 1:
+                return new ContactFragment();
+              case 2:
+                return new MomentFragment();
+              case 3:
+                return new BlankFragment2();
+              default:
+                throw new IllegalArgumentException("Invalid position: " + i);
             }
+          }
         };
         am2Binding.viewPager21.setAdapter(adapter);
 //        am2Binding.viewPager21.setUserInputEnabled(false); // 禁止滑动
