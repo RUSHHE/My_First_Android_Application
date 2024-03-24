@@ -64,7 +64,7 @@
                     android:text="通讯录" />
             </com.google.android.material.tabs.TabLayout>
 
-            <com.example.myapplication.ScrollExpandableListView
+            <com.example.myapplication.utils.ScrollExpandableListView
                 android:id="@+id/contact_expandable_listview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

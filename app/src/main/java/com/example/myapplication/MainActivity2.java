@@ -1,8 +1,9 @@
 package com.example.myapplication;
 
-import android.os.Build;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -11,12 +12,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.myapplication.databinding.ActivityMain2Binding;
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
@@ -71,5 +70,10 @@ public class MainActivity2 extends AppCompatActivity {
         new TabLayoutMediator(am2Binding.tabLayout1, am2Binding.viewPager21,
                 (tab, position) -> tab.setText(tabNames[position]) // 设置Tab标题
         ).attach();
+
+        am2Binding.navView.setNavigationItemSelectedListener(menuItem -> {
+            Toast.makeText(MainActivity2.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+            return true;
+        });
     }
 }

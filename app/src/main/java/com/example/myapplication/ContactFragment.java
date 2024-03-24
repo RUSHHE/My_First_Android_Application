@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.myapplication.databinding.FragmentContactBinding;
+import com.example.myapplication.utils.ScrollExpandableListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.scwang.smart.refresh.header.ClassicsHeader;
@@ -23,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Objects;
 
 public class ContactFragment extends Fragment {
   private FragmentContactBinding binding;
