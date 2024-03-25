@@ -28,7 +28,7 @@ public class ChatAdapter extends ArrayAdapter<Chat> {
 
         Chat chat = getItem(position);
         if (chat != null) {
-            binding.imageView3.setImageResource(data.get(position).imageId);
+            binding.chatIcon.setImageResource(data.get(position).imageId);
             binding.nameTextView.setText(data.get(position).name);
             binding.contentTextView.setText(data.get(position).content);
         }

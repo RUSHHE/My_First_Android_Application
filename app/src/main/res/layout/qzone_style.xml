@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/momentStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/qzoneIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/author"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/personName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="QQ名"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/qzoneIcon"
+                app:layout_constraintTop_toTopOf="@+id/qzoneIcon" />
+
+            <TextView
+                android:id="@+id/qzoneReleaseTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="今天 25:60"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/qzoneIcon"
+                app:layout_constraintLeft_toRightOf="@id/qzoneIcon"
+                app:layout_constraintStart_toEndOf="@id/qzoneIcon"
+                app:layout_constraintTop_toBottomOf="@+id/personName"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/qzoneContext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QQ空间发布文字内容"
+                app:layout_constraintTop_toBottomOf="@id/qzoneIcon"
+                android:layout_margin="10dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="55dp" />
+
+            <ImageView
+                android:id="@+id/qzonePic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="动态配图"
+                android:src="@drawable/laoda"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="@+id/qzoneContext"
+                app:layout_constraintTop_toBottomOf="@+id/qzoneContext" />
+
+            <TextView
+                android:id="@+id/qzonePhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="miPhone 15 Pro"
+                app:layout_constraintStart_toStartOf="@+id/qzoneContext"
+                app:layout_constraintTop_toBottomOf="@id/qzonePic" />
+
+            <TextView
+                android:id="@+id/likeZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="点赞人1、点赞人2"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="@+id/qzoneContext"
+                app:layout_constraintTop_toBottomOf="@id/qzonePhone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

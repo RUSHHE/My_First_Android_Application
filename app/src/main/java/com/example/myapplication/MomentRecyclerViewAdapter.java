@@ -22,7 +22,7 @@ public class MomentRecyclerViewAdapter extends RecyclerView.Adapter<MomentRecycl
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.moment_style, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.qzone_style, parent, false);
         return new ViewHolder(view);
     }
 

@@ -29,5 +29,9 @@
             android:id="@+id/navNight"
             android:icon="@drawable/night"
             android:title="夜间" />
+        <item
+            android:id="@+id/navQZone"
+            android:icon="@drawable/qzone"
+            android:title="我的空间" />
     </group>
 </menu>

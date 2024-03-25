@@ -17,16 +17,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/searchButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="#ffffff"
+                android:backgroundTint="#f3f3f3"
                 android:text="搜索"
-                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:textColor="#818181"
                 app:cornerRadius="5dp"
                 app:layout_constraintBottom_toTopOf="@id/VeChatList"
                 app:layout_constraintTop_toTopOf="parent" />

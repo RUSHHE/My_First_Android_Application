@@ -1,22 +1,24 @@
 package com.example.myapplication;
 
-import android.app.Dialog;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.myapplication.databinding.ActivityMain2Binding;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.Objects;
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -29,9 +31,12 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(am2Binding.getRoot());
 
         setSupportActionBar(am2Binding.materialToolbar); //设置toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        am2Binding.materialToolbar.setNavigationOnClickListener(view -> getOnBackPressedDispatcher().onBackPressed());
+        am2Binding.materialToolbar.setNavigationOnClickListener(view -> {
+//            getOnBackPressedDispatcher().onBackPressed(); // 返回
+            am2Binding.drawer.openDrawer(GravityCompat.START); // 打开侧边栏
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(am2Binding.getRoot(), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -70,6 +75,15 @@ public class MainActivity2 extends AppCompatActivity {
         new TabLayoutMediator(am2Binding.tabLayout1, am2Binding.viewPager21,
                 (tab, position) -> tab.setText(tabNames[position]) // 设置Tab标题
         ).attach();
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager manager = (WindowManager)getBaseContext().getSystemService(WINDOW_SERVICE);
+        if (manager != null) {
+            manager.getDefaultDisplay().getMetrics(displayMetrics);
+        }
+
+        am2Binding.navView.getLayoutParams().width = displayMetrics.widthPixels;
+        am2Binding.navView.requestLayout();
 
         am2Binding.navView.setNavigationItemSelectedListener(menuItem -> {
             Toast.makeText(MainActivity2.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
