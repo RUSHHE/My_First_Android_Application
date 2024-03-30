@@ -53,9 +53,9 @@
                 android:id="@+id/qzoneContext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="QQ空间发布文字内容"
                 app:layout_constraintTop_toBottomOf="@id/qzoneIcon"
-                android:layout_margin="10dp"
                 tools:layout_editor_absoluteX="10dp"
                 tools:layout_editor_absoluteY="55dp" />
 
@@ -63,9 +63,9 @@
                 android:id="@+id/qzonePic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:contentDescription="动态配图"
                 android:src="@drawable/laoda"
-                android:layout_margin="10dp"
                 app:layout_constraintStart_toStartOf="@+id/qzoneContext"
                 app:layout_constraintTop_toBottomOf="@+id/qzoneContext" />
 
@@ -78,15 +78,55 @@
                 app:layout_constraintStart_toStartOf="@+id/qzoneContext"
                 app:layout_constraintTop_toBottomOf="@id/qzonePic" />
 
+            <ToggleButton
+                android:id="@+id/qzoneLikeButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/like_toggle_selector"
+                android:textOff=""
+                android:textOn=""
+                app:layout_constraintBottom_toTopOf="@+id/likeZone"
+                app:layout_constraintEnd_toEndOf="@+id/qzonePic"
+                app:layout_constraintTop_toBottomOf="@id/qzonePic" />
+
             <TextView
                 android:id="@+id/likeZone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="点赞人1、点赞人2"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
                 app:layout_constraintStart_toStartOf="@+id/qzoneContext"
-                app:layout_constraintTop_toBottomOf="@id/qzonePhone" />
+                app:layout_constraintTop_toBottomOf="@id/qzoneLikeButton" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/qzoneCommentZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/likeZone" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/qzoneCommentIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/author"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/qzoneCommentZone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="说点什么吧..."
+                android:backgroundTint="#f3f3f3"
+                android:textColor="#818181"
+                app:cornerRadius="5dp"
+                app:layout_constraintStart_toEndOf="@id/qzoneCommentIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/qzoneCommentIcon"
+                app:layout_constraintBottom_toBottomOf="@id/qzoneCommentIcon"
+                app:layout_constraintLeft_toRightOf="@id/qzoneCommentIcon"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

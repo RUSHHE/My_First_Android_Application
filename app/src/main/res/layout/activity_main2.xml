@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toTopOf="@id/viewPager21"
             app:layout_constraintTop_toTopOf="parent"
             app:title="昵称区域"
-            app:subtitle="miPhone 15 Pro在线" />
+            app:subtitle="miPhone 15 Pro在线"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager21"

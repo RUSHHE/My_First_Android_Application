@@ -60,7 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
               case 1:
                 return new ContactFragment();
               case 2:
-                return new MomentFragment();
+                return new QZoneFragment();
               case 3:
                 return new BlankFragment2();
               default:
