@@ -5,6 +5,7 @@
 
     import androidx.annotation.NonNull;
     import androidx.annotation.Nullable;
+    import androidx.constraintlayout.widget.ConstraintLayout;
     import androidx.fragment.app.Fragment;
     import androidx.recyclerview.widget.LinearLayoutManager;
     import androidx.recyclerview.widget.RecyclerView;
@@ -14,20 +15,73 @@
     import android.view.View;
     import android.view.ViewGroup;
 
+    import com.example.myapplication.databinding.FragmentQzoneBinding;
+    import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
+    /**
+     * @author rushhe
+     */
     public class QZoneFragment extends Fragment {
+        boolean isFABOpen = false;
+        FragmentQzoneBinding binding;
         private RecyclerView recyclerView;
         private QZoneRecyclerViewAdapter QZoneRecyclerViewAdapter;
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_qzone, container, false);
-
-            recyclerView = view.findViewById(R.id.momentRecyclerView);
+            binding = FragmentQzoneBinding.inflate(inflater, container, false);
+            recyclerView = binding.momentRecyclerView;
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(layoutManager);
             QZoneRecyclerViewAdapter = new QZoneRecyclerViewAdapter();
             recyclerView.setAdapter(QZoneRecyclerViewAdapter);
-            return view;
+            binding.qzoneActionButton.setOnClickListener(view -> {
+                if(!isFABOpen){
+                    showFABMenu();
+                }else{
+                    closeFABMenu();
+                }
+            });
+
+            BottomSheetBehavior<ConstraintLayout> bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet);
+            bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+
+                @Override
+                public void onStateChanged(@NonNull View view, int i) {
+                    if (i == BottomSheetBehavior.STATE_EXPANDED || i == BottomSheetBehavior.STATE_COLLAPSED || i == BottomSheetBehavior.STATE_DRAGGING) {
+                        binding.qzone.setClickable(false);
+                    }
+                }
+
+                @Override
+                public void onSlide(@NonNull View view, float v) {
+                    float alpha = 1 - v;
+                    binding.qzone.setAlpha(alpha);
+                }
+            });
+
+            binding.qzoneActionButton1.setOnClickListener(view -> {
+                bottomSheetBehavior.setHideable(false);
+                bottomSheetBehavior.setPeekHeight(200, true);
+                bottomSheetBehavior.setHideable(true);
+            });
+            return binding.getRoot();
+        }
+
+        private void showFABMenu(){
+            isFABOpen=true;
+            binding.qzoneActionButton1.setVisibility(View.VISIBLE);
+            binding.qzoneActionButton2.setVisibility(View.VISIBLE);
+            binding.qzoneActionButton1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
+            binding.qzoneActionButton2.animate().translationY(-getResources().getDimension(R.dimen.standard_105));
+        }
+
+        private void closeFABMenu(){
+            isFABOpen=false;
+            binding.qzoneActionButton1.animate().translationY(0);
+            binding.qzoneActionButton2.animate().translationY(0);
+            binding.qzoneActionButton1.setVisibility(View.INVISIBLE);
+            binding.qzoneActionButton2.setVisibility(View.INVISIBLE);
         }
 
         @Override
