@@ -20,30 +20,33 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.myapplication.databinding.ActivityMain2Binding;
+import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity {
-  String[] tabNames = {"小而美", "通讯录", "发现", "我"};
+  ActivityMain2Binding binding;
+  BlankFragment blankFragment;
+  String[] tabNames = {"消息", "频道", "联系人", "动态"};
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     EdgeToEdge.enable(this);
-    ActivityMain2Binding am2Binding = ActivityMain2Binding.inflate(getLayoutInflater());
-    setContentView(am2Binding.getRoot());
+    binding = ActivityMain2Binding.inflate(getLayoutInflater());
+    setContentView(binding.getRoot());
 
-    setSupportActionBar(am2Binding.materialToolbar); // 设置toolbar
+    setSupportActionBar(binding.materialToolbar); // 设置toolbar
     Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-    am2Binding.materialToolbar.setNavigationOnClickListener(
+    binding.materialToolbar.setNavigationOnClickListener(
         view -> {
-          //            getOnBackPressedDispatcher().onBackPressed(); // 返回
-          am2Binding.drawer.openDrawer(GravityCompat.START); // 打开侧边栏
+          //          getOnBackPressedDispatcher().onBackPressed(); // 返回
+          binding.drawer.openDrawer(GravityCompat.START); // 打开侧边栏
         });
 
     ViewCompat.setOnApplyWindowInsetsListener(
-        am2Binding.getRoot(),
+        binding.getRoot(),
         (v, insets) -> {
           Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -62,28 +65,61 @@ public class MainActivity2 extends AppCompatActivity {
           public Fragment createFragment(int i) {
             switch (i) {
               case 0:
-                return new BlankFragment();
+                  blankFragment = new BlankFragment();
+                return blankFragment;
               case 1:
-                return new ContactFragment();
-              case 2:
-                return new QZoneFragment();
-              case 3:
                 return new BlankFragment2();
+              case 2:
+                return new ContactFragment();
+              case 3:
+                return new QZoneFragment();
               default:
                 throw new IllegalArgumentException("Invalid position: " + i);
             }
           }
         };
-    am2Binding.viewPager21.setAdapter(adapter);
-    am2Binding.viewPager21.setUserInputEnabled(false); // 禁止滑动
+    binding.viewPager21.setAdapter(adapter);
+    binding.viewPager21.setUserInputEnabled(false); // 禁止滑动
 
     // 将TabLayout与ViewPager2关联起来
     new TabLayoutMediator(
-            am2Binding.tabLayout1,
-            am2Binding.viewPager21,
-            (tab, position) -> tab.setText(tabNames[position]) // 设置Tab标题
+            binding.tabLayout1,
+            binding.viewPager21,
+            (tab, position) -> {
+                tab.setText(tabNames[position]);
+                switch (position) {
+                    case 0:
+                        tab.setIcon(R.drawable.shuoshuo);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.more);
+                        break;
+                    case 2:
+                        tab.setIcon(R.drawable.settings);
+                        break;
+                    case 3:
+                        tab.setIcon(R.drawable.qzone);
+                        break;
+                }
+            } // 设置Tab
             )
         .attach();
+
+    binding.tabLayout1.addOnTabSelectedListener(
+        new TabLayout.OnTabSelectedListener() {
+          @Override
+          public void onTabSelected(TabLayout.Tab tab) {}
+
+          @Override
+          public void onTabUnselected(TabLayout.Tab tab) {}
+
+          @Override
+          public void onTabReselected(TabLayout.Tab tab) {
+            if (tab.getPosition() == 0) {
+              blankFragment.refresh();
+            }
+          }
+        });
 
     DisplayMetrics displayMetrics = new DisplayMetrics();
     WindowManager manager = (WindowManager) getBaseContext().getSystemService(WINDOW_SERVICE);
@@ -91,10 +127,10 @@ public class MainActivity2 extends AppCompatActivity {
       manager.getDefaultDisplay().getMetrics(displayMetrics);
     }
 
-    am2Binding.navView.getLayoutParams().width = displayMetrics.widthPixels;
-    am2Binding.navView.requestLayout();
+    binding.navView.getLayoutParams().width = displayMetrics.widthPixels;
+    binding.navView.requestLayout();
 
-    am2Binding.navView.setNavigationItemSelectedListener(
+    binding.navView.setNavigationItemSelectedListener(
         menuItem -> {
           Toast.makeText(MainActivity2.this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
           return true;

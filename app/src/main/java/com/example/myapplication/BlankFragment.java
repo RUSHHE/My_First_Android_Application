@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,7 +20,6 @@ import java.util.ArrayList;
 public class BlankFragment extends Fragment {
   String[] names = {"AAA售房经理小圣", "行稳致远", "花开富贵", "aaaaaaadaze～～～", "不是二次元", "SoulMaker"};
   private FragmentBlankBinding binding;
-
   @Nullable
   @Override
   public View onCreateView(
@@ -113,5 +114,10 @@ public class BlankFragment extends Fragment {
   public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
     super.onViewStateRestored(savedInstanceState);
     Log.d("BlankFragment", "onViewStateRestored() called");
+  }
+
+  public void refresh() {
+    binding.chatNestedScrollView.scrollTo(0, 0);
+    binding.miniPrograms.autoRefresh();
   }
 }
